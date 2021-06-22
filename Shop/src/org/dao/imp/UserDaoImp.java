@@ -28,7 +28,7 @@ public class UserDaoImp implements UserDao{
 		try{
 			Session session = org.util.HibernateSessionFactory.getSession();
 			Transaction ts = session.beginTransaction();
-			session.update(user);
+			session.merge(user);
 			ts.commit();
 			org.util.HibernateSessionFactory.closeSession();
 		}catch(Exception e) {

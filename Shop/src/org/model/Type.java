@@ -10,7 +10,7 @@ public class Type implements java.io.Serializable {
 
 	// Fields
 
-	private Integer typeid;
+	private Integer id;
 	private String typename;
 
 	// Constructors
@@ -19,25 +19,19 @@ public class Type implements java.io.Serializable {
 	public Type() {
 	}
 
-	/** minimal constructor */
-	public Type(Integer typeid) {
-		this.typeid = typeid;
-	}
-
 	/** full constructor */
-	public Type(Integer typeid, String typename) {
-		this.typeid = typeid;
+	public Type(String typename) {
 		this.typename = typename;
 	}
 
 	// Property accessors
 
-	public Integer getTypeid() {
-		return this.typeid;
+	public Integer getId() {
+		return this.id;
 	}
 
-	public void setTypeid(Integer typeid) {
-		this.typeid = typeid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getTypename() {

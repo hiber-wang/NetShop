@@ -9,28 +9,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'left.jsp' starting page</title>
+    <title>My JSP 'pay_success.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="CSS/left.css">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
 
   </head>
   
   <body>
-  	<ul>
-  		<li>
-  			<a href="userInfo.action" target="right">个人信息</a>
-  		</li>
-  		<li>
-  			<a href="getAllGoods.action" target="right">商品信息</a>
-  		</li>
-  		<li>
-  			<a href="getBuyGoods.action" target="right">购物车</a>
-  		</li>
-  	</ul>
+    支付成功!
   </body>
 </html>

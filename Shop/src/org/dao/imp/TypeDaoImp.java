@@ -21,11 +21,11 @@ public class TypeDaoImp implements TypeDao{
 		}
 	}
 
-	public Type getOneType(Integer typeid) {
+	public Type getOneType(Integer id) {
 		Session session = org.util.HibernateSessionFactory.getSession();
 		Transaction ts = session.beginTransaction();
-		Query query = session.createQuery("from Type where typeid = ?");
-		query.setParameter(0, typeid);
+		Query query = session.createQuery("from Type where id = ?");
+		query.setParameter(0, id);
 		query.setMaxResults(1);
 		Type type = (Type)query.uniqueResult();
 		ts.commit();

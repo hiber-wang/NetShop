@@ -19,7 +19,23 @@ public class GoodDaoImp implements GoodDao{
 			return null;
 		}
 	}
-
+	
+	public List searchGoods(String searchContext) {
+		try {
+			Session session = org.util.HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			searchContext = "%" + searchContext + "%";
+			Query query = session.createQuery("from Good where goodname like ?");
+			query.setParameter(0, searchContext);
+			List list = query.list();
+			ts.commit();
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public Good getOneGood(Integer goodid) {
 		try {
 			Session session = org.util.HibernateSessionFactory.getSession();
@@ -36,5 +52,16 @@ public class GoodDaoImp implements GoodDao{
 			return null;
 		}
 	}
-
+	
+	public void insert(Good good) {
+		try {
+			Session session = org.util.HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			session.save(good);
+			ts.commit();
+			org.util.HibernateSessionFactory.closeSession();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

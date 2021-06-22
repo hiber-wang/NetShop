@@ -22,6 +22,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+	<s:form action="searchGoods.action" method="post">
+		<div id="searchBar">
+			<div id="search">
+				<input type="text" name="searchContext" id="searchContext"/>
+				<input type="submit" id="submit" value="搜索"/>
+			</div>
+			<a href="goodInsert.jsp"><img src="image/publish.png" id="publish"/></a>
+		</div>
+	</s:form>
 	<s:iterator value="#request.list" id="good">
 		<div class="goodInfo">
 			<div class="photo">
@@ -38,8 +47,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					分类：<s:property value="#good.type.typename"/>
 				</div>
 				<div class="buy">
-					<a href="buyGood.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/buynow.png"/></a>
-					<a href=""><img src="image/shoppingCar.png"/></a>
+					<a href="pay_success.jsp"><img src="image/buynow.png"/></a>
+					<a href="buyGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/shoppingCar.png"/></a>
 				</div>
 			</div>
 		</div>

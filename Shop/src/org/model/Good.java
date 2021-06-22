@@ -15,7 +15,6 @@ public class Good  implements java.io.Serializable {
      private Integer goodid;
      private String goodname;
      private Double goodprice;
-     private String typeid;
      private Type type;
      private Set users = new HashSet();
      private byte[] photo;
@@ -38,10 +37,9 @@ public class Good  implements java.io.Serializable {
 
     
     /** full constructor */
-    public Good(String goodname, Double goodprice, String typeid) {
+    public Good(String goodname, Double goodprice) {
         this.goodname = goodname;
         this.goodprice = goodprice;
-        this.typeid = typeid;
     }
 
    
@@ -70,15 +68,6 @@ public class Good  implements java.io.Serializable {
     public void setGoodprice(Double goodprice) {
         this.goodprice = goodprice;
     }
-
-    public String getTypeid() {
-        return this.typeid;
-    }
-    
-    public void setTypeid(String typeid) {
-        this.typeid = typeid;
-    }
-
 
 	public Set getUsers() {
 		return users;

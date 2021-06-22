@@ -1,10 +1,16 @@
+#userGoodInfo {
+	margin-top:50px;
+	font-size:15px;
+}
+
 .goodInfo {
-	height:200px;
-	width:350px;
+	height:300px;
+	width:400px;
 	float:left;
 	background:white;
 	margin:10px;
 }
+
 .photo img{
 	float:left;
 	margin-left:50px;

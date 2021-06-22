@@ -79,11 +79,6 @@ public class UserAction extends ActionSupport{
 		System.out.println("after:" + user.getUserid());
 		Map request = (Map)ActionContext.getContext().get("request");
 		request.put("user", user);
-		
-		// 获取已购商品信息
-		Set list = user.getGoods();
-		request.put("list", list);
-		
 		return SUCCESS;
 	}
 	public String getImage() throws Exception {
@@ -171,5 +166,48 @@ public class UserAction extends ActionSupport{
 			return ERROR;
 		}
 	}
-
+	public String buyGoods() throws Exception {
+		System.out.println("here");
+		Map session = (Map)ActionContext.getContext().getSession();
+		String userid = ((Login)session.get("login")).getUserid();
+		userDao = new UserDaoImp();
+		Usr user1 = userDao.getOneUser(userid);
+		Set list = user1.getGoods();
+		list.add(new GoodDaoImp().getOneGood(good.getGoodid()));
+		user1.setGoods(list);
+		userDao.update(user1);
+		return SUCCESS;
+	}
+	
+	public String getBuyGoods() throws Exception {
+		Map session = (Map)ActionContext.getContext().getSession();
+		Login login = (Login)session.get("login");
+		userDao = new UserDaoImp();
+		Usr user = userDao.getOneUser(login.getUserid());
+		Map request = (Map)ActionContext.getContext().get("request");
+		// 获取已购商品信息
+		Set list = user.getGoods();
+		request.put("buylist", list);
+		return SUCCESS;
+	}
+	
+	public String deleteGoods() throws Exception {
+		Map session = (Map) ActionContext.getContext().getSession();
+		String userid = ((Login)session.get("login")).getUserid();
+		userDao = new UserDaoImp();
+		Usr user1 = userDao.getOneUser(userid);
+		Set list = user1.getGoods();
+		Iterator iter = list.iterator();
+		while(iter.hasNext()) {
+			Good good1 = (Good) iter.next();
+			if(good1.getGoodid().equals(good.getGoodid())) {
+				iter.remove();
+			}
+		}
+		user1.setGoods(list);
+		userDao.update(user1);
+		Map request = (Map) ActionContext.getContext().get("request");
+		request.put("buylist", list);
+		return SUCCESS;
+	}
 }
