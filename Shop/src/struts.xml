@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+		"_//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+		"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+		<action name="login" class="org.action.LoginAction">
+			<result name="success">/main.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		<action name="userInfo" class="org.action.UserAction">
+			<result name="success">/userInfo.jsp</result>
+		</action>
+		<action name="getImage" class="org.action.UserAction" method="getImage"></action>
+		<action name="updateUserInfo" class="org.action.UserAction" method="updateUserInfo">
+			<result name="success">/updateUserInfo.jsp</result>
+		</action>
+		<action name="updateUser" class="org.action.UserAction" method="updateUser">
+			<result name="success">/userInfo.jsp</result>
+		</action>
+		<action name="userInsert" class="org.action.UserAction" method="userInsert">
+			<result name="success">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+</struts>

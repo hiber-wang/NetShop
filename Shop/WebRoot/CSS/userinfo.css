@@ -1,0 +1,33 @@
+#photo {
+	float:left;
+	margin:10px;
+}
+#info {
+	float:left;
+	margin:10px;
+}
+.sex {
+	width:25px;
+	height:25px;
+	margin-left:10px
+}
+#nameAndSex {
+	display: flex;    /*实现垂直居中*/
+    align-items: center;    /*实现水平居中*/
+    text-align: justify;
+    margin:0 auto;
+}
+
+#otherInfo {
+	display:flex;
+}
+
+.oi {
+	margin-right:20px;
+	color:grey;
+}
+#changeInfo {
+	width:17px;
+	height:17px;
+	margin-left:100px;
+}

@@ -1,0 +1,15 @@
+li {
+	padding-top: 10px;
+	padding-bottom: 0.8em;
+	font-size: 1em;
+	list-style-type: none;
+	border-bottom:thin solid #5F5F5F;
+	color: #4C4C4C;
+	left: 0px;
+	list-style-position: inside;
+	margin-left: -10px;
+}
+
+li a{
+	text-decoration: none;
+}
