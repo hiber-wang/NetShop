@@ -20,7 +20,7 @@ public class GoodDaoImp implements GoodDao{
 		}
 	}
 
-	public Good getOneGood(String goodid) {
+	public Good getOneGood(Integer goodid) {
 		try {
 			Session session = org.util.HibernateSessionFactory.getSession();
 			Transaction ts = session.beginTransaction();

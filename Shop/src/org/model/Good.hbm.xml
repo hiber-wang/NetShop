@@ -19,6 +19,9 @@
         <property name="goodprice" type="java.lang.Double">
             <column name="goodprice" precision="18" />
         </property>
+        <property name="photo">
+            <column name="photo" />
+        </property>
         <set name="users" table="Buy" lazy="true" inverse="true">
         	<key column="goodid"></key>
         	<many-to-many class="org.model.Usr" column="userid"></many-to-many>

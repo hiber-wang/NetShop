@@ -79,6 +79,11 @@ public class UserAction extends ActionSupport{
 		System.out.println("after:" + user.getUserid());
 		Map request = (Map)ActionContext.getContext().get("request");
 		request.put("user", user);
+		
+		// 获取已购商品信息
+		Set list = user.getGoods();
+		request.put("list", list);
+		
 		return SUCCESS;
 	}
 	public String getImage() throws Exception {

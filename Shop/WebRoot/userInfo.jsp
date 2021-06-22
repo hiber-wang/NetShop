@@ -45,8 +45,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					收货地址：<s:property value="#user.addr" />
   				</div>
   			</div>
+  			<div id="userGoodInfo">
+  				<%
+			  		Set list = (Set)request.getAttribute("list");
+			  		System.out.println(list.size());
+			  		if(list.size() > 0) { 
+			  	 %>
+			  	 <div></div>
+			  	 <%}else{ %>
+			  	 <center>
+			  	 	<div>
+				  	 	<img src="image/userGoodsZero.png"/>
+				  	 </div>
+			  	 </center>
+			  	 <%} %>
+  			</div>
   		</div>
   	</div>
-  	<div></div>
   </body>
 </html>

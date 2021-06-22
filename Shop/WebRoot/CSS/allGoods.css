@@ -1,0 +1,18 @@
+.photo {
+	float:left;
+	margin-left:100px;
+	margin-right:10px;
+}
+.info {
+	float:left;
+	margin-right:100px;
+}
+.goodname {
+	font-size:20px;
+}
+.buy img{
+	height:30px;
+	width:30px;
+	margin-top:42px;
+	margin-right:20px;
+}
