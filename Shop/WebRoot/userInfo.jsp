@@ -47,5 +47,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</div>
   		</div>
   	</div>
+  	<div id="userGoodInfo">
+		<% 
+ 		List list = (List)request.getAttribute("paylist"); 
+ 		System.out.println(list.size()); 
+ 		if(list.size() > 0) {
+  	 	%>
+  	 <div class="goodInfos">
+  	 	<s:iterator value="#request.goodlist" id="good">
+			<s:iterator value="#request.paylist" id="paygood">
+				<s:if test="#good.goodid == #paygood.goodid">
+				<div class="goodInfo">
+				<div class="photo">
+					<img src="getGoodImage.action?good.goodid=<s:property value="#good.goodid"/>" width="150"/>
+				</div>
+				<div class="info">
+					<div class="goodname">
+						<s:property value="#good.goodname"/>
+					</div>
+					<div>
+						价格：<s:property value="#good.goodprice"/>
+					</div>
+					<div>
+						分类：<s:property value="#good.type.typename"/>
+					</div>
+					<div>
+						时间：<s:date name="#paygood.date" format="yyyy-MM-dd"></s:date>
+					</div>
+					<div class="buy">
+						<a href="deletePayGoods.action?pay.id=<s:property value="#paygood.id"/>"><img src="image/delete.png"/></a>
+					</div>
+				</div>
+			</div>
+			</s:if>
+			</s:iterator>
+		</s:iterator>
+  	 </div>
+  	 <%}else{ %>
+  	 <center>
+  	 	<div>
+	  	 	<img src="image/userGoodsZero.png"/>
+	  	 </div>
+  	 </center>
+  	 <%} %>
+	</div>
   </body>
 </html>

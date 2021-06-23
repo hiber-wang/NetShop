@@ -30,16 +30,22 @@
 			<result name="success">/allGoods.jsp</result>
 		</action>
 		<action name="goodInsert" class="org.action.GoodAction" method="goodInsert">
-			<result name="success">/allGoods.jsp</result>
+			<result name="success">/insert_success.jsp</result>
 		</action>
 		<action name="buyGoods" class="org.action.UserAction" method="buyGoods">
-			<result name="success">/error.jsp</result>
+			<result name="success">/buy_success.jsp</result>
 		</action>
 		<action name="getBuyGoods" class="org.action.UserAction" method="getBuyGoods">
 			<result name="success">/shoppingCar.jsp</result>
 		</action>
 		<action name="deleteGoods" class="org.action.UserAction" method="deleteGoods">
 			<result name="success">/shoppingCar.jsp</result>
+		</action>
+		<action name="payGoods" class="org.action.UserAction" method="payGoods">
+			<result name="success">/pay_success.jsp</result>
+		</action>
+		<action name="deletePayGoods" class="org.action.UserAction" method="deletePayGoods">
+			<result name="success">/userInfo.jsp</result>
 		</action>
 	</package>
 </struts>

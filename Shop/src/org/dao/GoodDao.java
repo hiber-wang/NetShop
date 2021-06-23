@@ -4,6 +4,7 @@ import org.model.Good;
 public interface GoodDao {
 	public Good getOneGood(Integer goodid);
 	public List getAll();
-	public List searchGoods(String searchContext);
+	public List getAll(int pageNow);
+	public List searchGoods(String searchContext, int typeid);
 	public void insert(Good good);
 }

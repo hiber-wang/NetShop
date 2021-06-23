@@ -1,3 +1,6 @@
+#userinfo {
+	height:120px;
+}
 #photo {
 	float:left;
 	margin:10px;
@@ -30,4 +33,73 @@
 	width:17px;
 	height:17px;
 	margin-left:100px;
+}
+
+#userGoodInfo {
+	margin-top:50px;
+	font-size:15px;
+}
+
+.goodInfo {
+	height:300px;
+	width:400px;
+	float:left;
+	background:white;
+	margin:10px;
+}
+
+.photo img{
+	float:left;
+	margin-left:50px;
+	margin-right:10px;
+	width:100px;
+	height:150px;
+}
+.info {
+	float:left;
+	margin-right:50px;
+}
+.goodname {
+	font-size:20px;
+}
+.buy img{
+	height:30px;
+	width:30px;
+	margin-top:42px;
+	margin-right:20px;
+}
+
+#searchContext {
+	width:400px;
+	height:2.0em;
+	border:1px solid;
+}
+
+#submit {
+	height:1.8em;
+	margin:10px;
+	outline:0;
+	font-size:1.0em;
+	border-radius:4px;
+	border:1px solid #c8cccf;
+	color:#6a6f77;
+	-webkit-appearance:none;
+  	-moz-appearance: none;
+}
+
+#publish {
+	width:20px;
+	height:20px;
+}
+
+#searchBar {
+	display: flex;    /*实现垂直居中*/
+    align-items: center;    /*实现水平居中*/
+    text-align: justify;
+    margin:0 auto;
+}
+
+#search {
+	margin-left:500px;
+	margin-right: 100px
 }

@@ -22,43 +22,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-      			<div id="userGoodInfo">
-  				<% 
-			  		Set list = (Set)request.getAttribute("buylist"); 
-			  		System.out.println(list.size()); 
-			  		if(list.size() > 0) {  
-			  	 %>
-			  	 <div class="goodInfos">
-			  	 	<s:iterator value="#request.buylist" id="good">
-						<div class="goodInfo">
-							<div class="photo">
-								<img src="getGoodImage.action?good.goodid=<s:property value="#good.goodid"/>" width="150"/>
-							</div>
-							<div class="info">
-								<div class="goodname">
-									<s:property value="#good.goodname"/>
-								</div>
-								<div>
-									价格：<s:property value="#good.goodprice"/>
-								</div>
-								<div>
-									分类：<s:property value="#good.type.typename"/>
-								</div>
-								<div class="buy">
-									<a href="pay_success.jsp"/><img src="image/buynow.png"/></a>
-									<a href="deleteGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/cancel.png"/></a>
-								</div>
-							</div>
-						</div>
-					</s:iterator>
-			  	 </div>
-			  	 <%}else{ %>
-			  	 <center>
-			  	 	<div>
-				  	 	<img src="image/userGoodsZero.png"/>
-				  	 </div>
-			  	 </center>
-			  	 <%} %>
-  			</div>
+   	<div id="userGoodInfo">
+		<% 
+ 		Set list = (Set)request.getAttribute("buylist"); 
+ 		System.out.println(list.size()); 
+ 		if(list.size() > 0) {  
+  	 	%>
+  	 <div class="goodInfos">
+  	 	<s:iterator value="#request.buylist" id="good">
+			<div class="goodInfo">
+				<div class="photo">
+					<img src="getGoodImage.action?good.goodid=<s:property value="#good.goodid"/>" width="150"/>
+				</div>
+				<div class="info">
+					<div class="goodname">
+						<s:property value="#good.goodname"/>
+					</div>
+					<div>
+						价格：<s:property value="#good.goodprice"/>
+					</div>
+					<div>
+						分类：<s:property value="#good.type.typename"/>
+					</div>
+					<div class="buy">
+						<a href="pay_success.jsp"/><img src="image/buynow.png"/></a>
+						<a href="deleteGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/cancel.png"/></a>
+					</div>
+				</div>
+			</div>
+		</s:iterator>
+  	 </div>
+  	 <%}else{ %>
+  	 <center>
+  	 	<div>
+	  	 	<img src="image/userGoodsZero.png"/>
+	  	 </div>
+  	 </center>
+  	 <%} %>
+	</div>
   </body>
 </html>

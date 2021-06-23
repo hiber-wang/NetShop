@@ -1,5 +1,6 @@
 package org.action;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.io.FileInputStream;
@@ -27,6 +28,15 @@ public class GoodAction extends ActionSupport{
 	private Good good;
 	private String searchContext;
 	private Integer types;
+	private int pageNow;
+
+	public int getPageNow() {
+		return pageNow;
+	}
+
+	public void setPageNow(int pageNow) {
+		this.pageNow = pageNow;
+	}
 
 	public Integer getTypes() {
 		return types;
@@ -78,9 +88,18 @@ public class GoodAction extends ActionSupport{
 
 	public String execute() throws Exception {
 		GoodDao goodDao = new GoodDaoImp();
-		List list = goodDao.getAll();
+		List list = goodDao.getAll(this.getPageNow());
+		System.out.println(this.getPageNow());
+		List alllist = goodDao.getAll();
+		int pageNum = alllist.size() / 6 + 2;
 		Map request = (Map) ActionContext.getContext().get("request");
+		List pageNumList = new ArrayList();
+		for(int i = 1; i < pageNum; i++) {
+			pageNumList.add(i);
+		}
+		
 		request.put("list", list);
+		request.put("pageNum", pageNumList);
 		return SUCCESS;
 	}
 	
@@ -101,9 +120,10 @@ public class GoodAction extends ActionSupport{
 	public String searchGoods() throws Exception {
 		GoodDao goodDao = new GoodDaoImp();
 		System.out.println(this.getSearchContext());
-		List list = goodDao.searchGoods(this.getSearchContext());
+		List list = goodDao.searchGoods(this.getSearchContext(), type.getId());
 		Map request = (Map) ActionContext.getContext().get("request");
 		request.put("list", list);
+		request.put("typeid", type.getId());
 		return SUCCESS;
 	}
 	

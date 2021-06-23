@@ -17,6 +17,7 @@
         <mapping resource="org/model/Login.hbm.xml"/>
         <mapping resource="org/model/Type.hbm.xml"/>
         <mapping resource="org/model/Usr.hbm.xml"/>
+        <mapping resource="org/model/Pay.hbm.xml"/>
     
     </session-factory>
 

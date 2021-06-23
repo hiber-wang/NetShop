@@ -14,19 +14,32 @@ import org.dao.imp.GoodDaoImp;
 import org.dao.imp.UserDaoImp;
 import org.dao.LoginDao;
 import org.dao.imp.LoginDaoImp;
+import org.dao.PayDao;
+import org.dao.GoodDao;
+import org.dao.imp.PayDaoImp;
 import org.model.Login;
 import org.model.Good;
 import org.model.Usr;
+import org.model.Pay;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 public class UserAction extends ActionSupport{
 	UserDao userDao;
 	LoginDao loginDao;
+	PayDao payDao;
+	GoodDao goodDao;
 	private Usr user;
 	private Good good;
 	private File zpFile;
 	private String pwd;
 	private String sex;
+	private Pay pay;
+	public Pay getPay() {
+		return pay;
+	}
+	public void setPay(Pay pay) {
+		this.pay = pay;
+	}
 	public String getSex() {
 		return sex;
 	}
@@ -79,6 +92,15 @@ public class UserAction extends ActionSupport{
 		System.out.println("after:" + user.getUserid());
 		Map request = (Map)ActionContext.getContext().get("request");
 		request.put("user", user);
+		
+		payDao = new PayDaoImp();
+		List list = payDao.getUserPay(login.getUserid());
+		request.put("paylist", list);
+		
+		goodDao = new GoodDaoImp();
+		List list2 = goodDao.getAll();
+		request.put("goodlist", list2);
+		
 		return SUCCESS;
 	}
 	public String getImage() throws Exception {
@@ -209,5 +231,35 @@ public class UserAction extends ActionSupport{
 		Map request = (Map) ActionContext.getContext().get("request");
 		request.put("buylist", list);
 		return SUCCESS;
+	}
+	
+	public String payGoods() throws Exception {
+		try{
+			Map session = (Map) ActionContext.getContext().getSession();
+			String userid = ((Login)session.get("login")).getUserid();
+			payDao = new PayDaoImp();
+			Pay pay = new Pay();
+			pay.setGoodid(good.getGoodid());
+			pay.setUserid(userid);
+			pay.setDate(new Date());
+			payDao.insert(pay);
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+	
+	public String deletePayGoods() throws Exception {
+		try {
+			payDao = new PayDaoImp();
+			Pay pay1 = payDao.getOnePay(pay.getId());
+			payDao.delete(pay1);
+			execute();
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
 	}
 }
