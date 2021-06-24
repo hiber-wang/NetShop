@@ -6,4 +6,5 @@ public interface UserDao {
 	public void update(Usr user);
 	public void insert(Usr user);
 	public void delete(Usr user);
+	public List getAll();
 }

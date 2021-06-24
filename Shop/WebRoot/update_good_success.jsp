@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'update_success.jsp' starting page</title>
+    <title>My JSP 'update_good_success.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,12 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<%
-  		if((Integer)session.getAttribute("authority") == 0) {
-  	 %>
-    <jsp:forward page="userInfo.action"/>
-    <%}else { %>
-    <jsp:forward page="getAllUser.action"/>
-    <%} %>
+    <jsp:forward page="getAllGoods.action?pageNow=1"/>
   </body>
 </html>

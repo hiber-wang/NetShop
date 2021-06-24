@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE validators PUBLIC
+	"-//Apache Struts//XWork Validator 1.0.2//EN"  
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="user.userid">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>登录账号不得为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">20</param>
+			<message>登录账号长度必须在4~20位之间</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="expression">^[0-9]{1,}$</param>
+			<message>登录账号必须由数字组成</message>
+		</field-validator>
+	</field>
+	
+	<field name="user.username">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>用户名不得为空</message>
+		</field-validator>
+	</field>
+	
+</validators>

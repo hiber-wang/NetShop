@@ -13,8 +13,16 @@ public class Login implements java.io.Serializable {
 	private Integer id;
 	private String userid;
 	private String pwd;
-
+	private int authority;
 	// Constructors
+
+	public int getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(int authority) {
+		this.authority = authority;
+	}
 
 	/** default constructor */
 	public Login() {

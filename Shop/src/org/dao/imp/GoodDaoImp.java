@@ -8,6 +8,30 @@ import org.model.Good;
 public class GoodDaoImp implements GoodDao{
 
 	
+	public void delete(Good good) {
+		try {
+			Session session = org.util.HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			session.delete(good);
+			ts.commit();
+			org.util.HibernateSessionFactory.closeSession();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void update(Good good) {
+		try{
+			Session session = org.util.HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			session.merge(good);
+			ts.commit();
+			org.util.HibernateSessionFactory.closeSession();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public List getAll() {
 		try {
 			Session session = org.util.HibernateSessionFactory.getSession();

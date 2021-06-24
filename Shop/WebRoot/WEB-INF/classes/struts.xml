@@ -18,10 +18,12 @@
 		</action>
 		<action name="updateUser" class="org.action.UserAction" method="updateUser">
 			<result name="success">/update_success.jsp</result>
+			<result name="input">/updateUserInfo.jsp</result>
 		</action>
 		<action name="userInsert" class="org.action.UserAction" method="userInsert">
 			<result name="success">/login.jsp</result>
 			<result name="error">/error.jsp</result>
+			<result name="input">/userInsert.jsp</result>
 		</action>
 		<action name="getAllGoods" class="org.action.GoodAction">
 			<result name="success">/allGoods.jsp</result>
@@ -49,6 +51,22 @@
 			<result name="success">/userInfo.jsp</result>
 		</action>
 		<action name="deleteUser" class="org.action.UserAction" method="deleteUser">
+			<result name="success">/login.jsp</result>
+		</action>
+		<action name="getAllUser" class="org.action.UserAction" method="getAllUser">
+			<result name="success">/allUsers.jsp</result>
+		</action>
+		<action name="adminDeleteGoods" class="org.action.GoodAction" method="adminDeleteGoods">
+			<result name="success">/allGoods.jsp</result>
+		</action>
+		<action name="updateGoodInfo" class="org.action.GoodAction" method="updateGoodInfo">
+			<result name="success">/updateGoodInfo.jsp</result>
+		</action>
+		<action name="updateGood" class="org.action.GoodAction" method="updateGood">
+			<result name="success">/update_good_success.jsp</result>
+			<result name="input">/updateUserInfo.jsp</result>
+		</action>
+		<action name="logout" class="org.action.LoginAction" method="logout">
 			<result name="success">/login.jsp</result>
 		</action>
 	</package>

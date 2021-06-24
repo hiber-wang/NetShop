@@ -16,5 +16,8 @@
         <property name="pwd" type="java.lang.String">
             <column name="pwd" length="20" />
         </property>
+        <property name="authority" type="java.lang.Integer">
+        	<column name="authority"/>
+        </property>
     </class>
 </hibernate-mapping>

@@ -46,16 +46,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<img src="image/pwd.png"/>
 	    			</td>
 	    			<td>
-	    				<input type="text" name="pwd" class="userInfo"/>
+	    				<input type="password" name="pwd" class="userInfo"/>
 	    			</td>
 	    		</tr>
-	    		
+	
 	    		<tr>
 	    			<td>
 	    				<img src="image/icon.png"/>
 	    			</td>
 	    			<td>
 	    				<input type="file" name="zpFile"/>
+	    			</td>
+	    		</tr>
+	    		
+	    		<tr>
+	    			<td>
+	    				<img src="image/addr.png"/>
+	    			</td>
+	    			<td>
+	    				<input type="text" name="user.addr" class="userInfo"/>
 	    			</td>
 	    		</tr>
 	    		

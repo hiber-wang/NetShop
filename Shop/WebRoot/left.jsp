@@ -22,6 +22,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<ul>
+  		<%
+  			if((Integer)session.getAttribute("authority") == 0) {
+  		 %>
   		<li>
   			<a href="userInfo.action" target="right">个人信息</a>
   		</li>
@@ -33,6 +36,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</li>
   		<li>
   			<a href="deleteUser.action" target="_top" onClick="if(!confirm('您确定要注销用户吗？'))return false;else return true;">注销用户</a>
+  		</li>
+  		<%}else{ %>
+  			<li>
+  				<a href="getAllUser.action" target="right">用户管理</a>
+  			</li>
+	  		<li>
+	  			<a href="getAllGoods.action?pageNow=1" target="right">商品管理</a>
+	  		</li>
+  		<%} %>
+  		<li>
+  			<a href="logout.action" target="_top">退出</a>
   		</li>
   	</ul>
   </body>

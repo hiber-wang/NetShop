@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.io.FileInputStream;
 import java.io.File;
 import javax.servlet.ServletOutputStream;
@@ -161,5 +162,53 @@ public class GoodAction extends ActionSupport{
 			e.printStackTrace();
 			return ERROR;
 		}
+	}
+	
+	public String adminDeleteGoods() throws Exception{
+		goodDao = new GoodDaoImp();
+		Good good1 = goodDao.getOneGood(good.getGoodid());
+		goodDao.delete(good1);
+		List list = goodDao.getAll();
+		Map request = (Map) ActionContext.getContext().get("request");
+		request.put("list", list);
+		return SUCCESS;
+	}
+	
+	
+	public String updateGoodInfo() throws Exception {
+		Map session = (Map) ActionContext.getContext().getSession();
+		goodDao = new GoodDaoImp();
+		Good good1 = goodDao.getOneGood(good.getGoodid());
+		Map request = (Map)ActionContext.getContext().get("request");
+		request.put("good", good1);
+		return SUCCESS;
+	}
+	public String updateGood() throws Exception {
+		
+		System.out.println("here1");
+		Map session = (Map) ActionContext.getContext().getSession();
+		goodDao = new GoodDaoImp();
+		TypeDao typeDao = new TypeDaoImp();
+		Good good2 = goodDao.getOneGood(good.getGoodid());
+		
+		System.out.println("here2");
+		Good good1 = new Good();
+		good1.setGoodid(good2.getGoodid());
+		System.out.println("here3");
+		good1.setGoodname(good.getGoodname());
+		good1.setGoodprice(good.getGoodprice());
+		Type type1 = typeDao.getOneType(type.getId());
+		good1.setType(type);
+		if(this.getZpFile() != null) {
+			FileInputStream fis = new FileInputStream(this.getZpFile());
+			byte[] buffer = new byte[fis.available()];
+			fis.read(buffer);
+			good1.setPhoto(buffer);
+		}else {
+			byte[] photo = good2.getPhoto();
+			good1.setPhoto(photo);
+		}
+		goodDao.update(good1);
+		return SUCCESS;
 	}
 }

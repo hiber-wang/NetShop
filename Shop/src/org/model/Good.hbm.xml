@@ -10,7 +10,7 @@
             <column name="goodid" />
             <generator class="identity" />
         </id>
-        <many-to-one name="type" class="org.model.Type" fetch="select" cascade="all" lazy="false">
+        <many-to-one name="type" class="org.model.Type" fetch="select" cascade="save-update" lazy="false">
         	<column name="typeid"></column>
         </many-to-one>
         <property name="goodname" type="java.lang.String">

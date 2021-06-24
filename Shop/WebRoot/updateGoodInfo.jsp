@@ -24,27 +24,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <s:set name="user" value="#request.user"></s:set>
-    <s:form action="updateUser.action" method="post" enctype="multipart/form-data">
+    <s:set name="good" value="#request.good"></s:set>
+    <s:form action="updateGood.action" method="post" enctype="multipart/form-data">
     	<table>
     		<tr>
     			<td>
-    				<s:textfield name="user.userid" value="%{#user.userid}" label="账号"></s:textfield>
+    				<s:textfield name="good.goodid" value="%{#good.goodid}" label="商品编号"></s:textfield>
     			</td>
     		</tr>
     		<tr>
     			<td>
-    				<s:textfield name="user.username" value="%{#user.username}" label="用户名"/></textfield>
+    				<s:textfield name="good.goodname" value="%{#good.goodname}" label="商品名"></s:textfield>
     			</td>
     		</tr>
     		<tr>
-    			<s:radio list="#{1:'男', 0:'女'}" value="#user.sex" label="性别" name="user.sex"></s:radio>
-    		</tr>
-    		<tr>
-    			<td>收货地址：</td>
     			<td>
-    				<input type="text" name="user.addr" value="<s:property value="#user.addr"/>"/>
+    				<s:textfield name="good.goodprice" value="%{#good.goodprice}" label="商品价格"/></textfield>
     			</td>
+    		</tr>
+    		<tr>
+    			<select name="type.id">
+   					<s:iterator id="type1" value="#session.typelist">
+   						<option value="<s:property value="#type1.id"/>">
+   							<s:property value="#type1.typename"/>
+   						</option>
+   					</s:iterator>
+   				</select>
     		</tr>
     		<tr>
     			<td>照片:</td>

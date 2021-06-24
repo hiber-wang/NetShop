@@ -29,6 +29,7 @@ public class LoginAction extends ActionSupport{
 		if(login1 != null) {
 			Map session = (Map) ActionContext.getContext().getSession();
 			session.put("login", login1);
+			session.put("authority", login1.getAuthority());
 			
 			TypeDao typeDao = new TypeDaoImp();
 			List list = typeDao.getAll();
@@ -38,5 +39,11 @@ public class LoginAction extends ActionSupport{
 		}else {
 			return ERROR;
 		}
+	}
+	
+	public String logout() throws Exception {
+		Map session = (Map) ActionContext.getContext().getSession();
+		session.put("login", null);
+		return SUCCESS;
 	}
 }

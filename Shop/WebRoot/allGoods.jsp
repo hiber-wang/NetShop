@@ -70,8 +70,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					分类：<s:property value="#good.type.typename"/>
 				</div>
 				<div class="buy">
-					<a href="payGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/buynow.png"/></a>
-					<a href="buyGoods.action?good.goodid=<s:property value="#good.goodid"/>&pageNow=<s:property value="#request.now"/>"><img src="image/shoppingCar.png"/></a>
+					<%
+						if((Integer)session.getAttribute("authority")==0) {
+					 %>
+					 	<a href="payGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/buynow.png"/></a>
+						<a href="buyGoods.action?good.goodid=<s:property value="#good.goodid"/>&pageNow=<s:property value="#request.now"/>"><img src="image/shoppingCar.png"/></a>
+					<%}else{ %>
+						<a href="updateGoodInfo.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/change.png"/></a>
+						<a href="adminDeleteGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/cancel.png"/></a>
+					<%} %>
 				</div>
 			</div>
 		</div>

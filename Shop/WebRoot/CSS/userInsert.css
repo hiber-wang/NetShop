@@ -18,6 +18,7 @@
 .userInfo {
 	width:400px;
 	height:3.0em;
+	display:flex;
 }
 
 #submit {

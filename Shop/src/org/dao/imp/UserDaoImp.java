@@ -60,4 +60,17 @@ public class UserDaoImp implements UserDao{
 		}
 	}
 	
+	public List getAll(){
+		try {
+			Session session = org.util.HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			Query query = session.createQuery("from Usr");
+			List list = query.list();
+			ts.commit();
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

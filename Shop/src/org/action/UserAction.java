@@ -132,10 +132,16 @@ public class UserAction extends ActionSupport{
 		Map session = (Map) ActionContext.getContext().getSession();
 		Login login = (Login) session.get("login");
 		userDao = new UserDaoImp();
-		Usr user = userDao.getOneUser(login.getUserid());
+		Usr user1;
+		if(login.getAuthority() == 1){
+			user1 = userDao.getOneUser(user.getUserid());
+			session.put("updateUser", user1);
+		}else {
+			user1 = userDao.getOneUser(login.getUserid());
+		}
 		Map request = (Map)ActionContext.getContext().get("request");
-		request.put("user", user);
-		session.put("photo", user.getPhoto());
+		request.put("user", user1);
+		session.put("photo", user1.getPhoto());
 		return SUCCESS;
 	}
 	public String updateUser() throws Exception {
@@ -143,7 +149,12 @@ public class UserAction extends ActionSupport{
 		Map session = (Map) ActionContext.getContext().getSession();
 		Login login = (Login) session.get("login");
 		userDao = new UserDaoImp();
-		Usr user2 = userDao.getOneUser(login.getUserid());
+		Usr user2;
+		if(login.getAuthority() == 0) {
+			user2 = userDao.getOneUser(login.getUserid());
+		}else {
+			user2 = (Usr)session.get("updateUser");
+		}
 
 		Usr user1 = new Usr();
 		user1.setUserid(user.getUserid());
@@ -159,7 +170,7 @@ public class UserAction extends ActionSupport{
 			fis.read(buffer);
 			user1.setPhoto(buffer);
 		}else {
-			byte[] photo = (byte[]) ActionContext.getContext().getSession().get("photo");
+			byte[] photo = user2.getPhoto();
 			user1.setPhoto(photo);
 		}
 		userDao.update(user1);
@@ -184,6 +195,7 @@ public class UserAction extends ActionSupport{
 			Login login = new Login();
 			login.setPwd(this.getPwd());
 			login.setUserid(user.getUserid());
+			login.setAuthority(0);
 			if(this.getZpFile() != null) {
 				System.out.println("ÕÒµ½Í¼Æ¬ÎÄ¼þ");
 				FileInputStream fis = new FileInputStream(this.getZpFile());
@@ -305,6 +317,19 @@ public class UserAction extends ActionSupport{
 			System.out.println("deleteUserloginid:" + login.getId());
 			loginDao.delete(login);
 			
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+	
+	public String getAllUser() throws Exception {
+		try {
+			userDao = new UserDaoImp();
+			List list = userDao.getAll();
+			Map session = (Map)ActionContext.getContext().getSession();
+			session.put("userlist", list);
 			return SUCCESS;
 		}catch(Exception e) {
 			e.printStackTrace();

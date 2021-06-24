@@ -1,0 +1,33 @@
+html {
+	height:100%;
+}
+body {
+	min-height:100%;
+	position:relative;
+}
+.userInfo {
+	height:200px;
+	width:500px;
+	float:left;
+	margin:10px;
+}
+.photo img{
+	float:left;
+	margin-left:50px;
+	margin-right:10px;
+	width:100px;
+	height:150px;
+}
+.info {
+	float:left;
+	margin-right:50px;
+}
+.username {
+	font-size:20px;
+}
+.change img{
+	height:30px;
+	width:30px;
+	margin-top:42px;
+	margin-right:20px;
+}
