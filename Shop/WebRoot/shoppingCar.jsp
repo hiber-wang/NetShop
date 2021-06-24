@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						分类：<s:property value="#good.type.typename"/>
 					</div>
 					<div class="buy">
-						<a href="pay_success.jsp"/><img src="image/buynow.png"/></a>
+						<a href="payGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/buynow.png"/></a>
 						<a href="deleteGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/cancel.png"/></a>
 					</div>
 				</div>

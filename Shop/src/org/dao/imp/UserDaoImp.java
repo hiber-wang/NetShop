@@ -48,4 +48,16 @@ public class UserDaoImp implements UserDao{
 		}
 	}
 	
+	public void delete(Usr user){
+		try {
+			Session session = org.util.HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			session.delete(user);
+			ts.commit();
+			org.util.HibernateSessionFactory.closeSession();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

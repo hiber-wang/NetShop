@@ -3,4 +3,5 @@ import org.model.Login;
 public interface LoginDao {
 	public Login validate(String username, String pwd);
 	public void insert(Login login);
+	public void delete(Login login);
 }

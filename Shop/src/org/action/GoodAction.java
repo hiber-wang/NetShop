@@ -87,20 +87,29 @@ public class GoodAction extends ActionSupport{
 	}
 
 	public String execute() throws Exception {
-		GoodDao goodDao = new GoodDaoImp();
-		List list = goodDao.getAll(this.getPageNow());
-		System.out.println(this.getPageNow());
-		List alllist = goodDao.getAll();
-		int pageNum = alllist.size() / 6 + 2;
-		Map request = (Map) ActionContext.getContext().get("request");
-		List pageNumList = new ArrayList();
-		for(int i = 1; i < pageNum; i++) {
-			pageNumList.add(i);
+		try {
+			GoodDao goodDao = new GoodDaoImp();
+			List list = goodDao.getAll(this.getPageNow());
+			System.out.println(this.getPageNow());
+			List alllist = goodDao.getAll();
+			int pageNum = alllist.size() / 6 + 2;
+			Map request = (Map) ActionContext.getContext().get("request");
+			List pageNumList = new ArrayList();
+			for(int i = 1; i < pageNum; i++) {
+				pageNumList.add(i);
+			}
+			
+			request.put("list", list);
+			request.put("pageNum", pageNumList);
+			request.put("now", this.getPageNow());
+			System.out.println("goodaction execute:" + this.getPageNow());
+			System.out.println("listlength:" + list.size());
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("error!");
+			return ERROR;
 		}
-		
-		request.put("list", list);
-		request.put("pageNum", pageNumList);
-		return SUCCESS;
 	}
 	
 	public String getGoodImage() throws Exception {

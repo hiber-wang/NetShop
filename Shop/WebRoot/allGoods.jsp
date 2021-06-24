@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="buy">
 					<a href="payGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/buynow.png"/></a>
-					<a href="buyGoods.action?good.goodid=<s:property value="#good.goodid"/>"><img src="image/shoppingCar.png"/></a>
+					<a href="buyGoods.action?good.goodid=<s:property value="#good.goodid"/>&pageNow=<s:property value="#request.now"/>"><img src="image/shoppingCar.png"/></a>
 				</div>
 			</div>
 		</div>
@@ -79,7 +79,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="footer">
 		<s:iterator id="pageNum" value="#request.pageNum">
-			<a href="getAllGoods.action?pageNow=<s:property value="#pageNum"/>"><s:property value="#pageNum"/></a>
+			<s:if test="#pageNum == #request.now">
+				<a href="getAllGoods.action?pageNow=<s:property value="#pageNum"/>"><font color="red" size="5px"><s:property value="#pageNum"/></font></a>
+			</s:if>
+			<s:else>
+				<a href="getAllGoods.action?pageNow=<s:property value="#pageNum"/>"><font><s:property value="#pageNum"/></font></a>
+			</s:else>
 		</s:iterator>
 	</div>
   </body>

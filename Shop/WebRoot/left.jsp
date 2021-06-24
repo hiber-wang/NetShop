@@ -31,6 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<li>
   			<a href="getBuyGoods.action" target="right">购物车</a>
   		</li>
+  		<li>
+  			<a href="deleteUser.action" target="_top" onClick="if(!confirm('您确定要注销用户吗？'))return false;else return true;">注销用户</a>
+  		</li>
   	</ul>
   </body>
 </html>

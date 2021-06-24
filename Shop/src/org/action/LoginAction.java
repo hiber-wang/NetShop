@@ -25,10 +25,10 @@ public class LoginAction extends ActionSupport{
 	
 	public String execute() throws Exception {
 		LoginDao loginDao = new LoginDaoImp();
-		Login user = loginDao.validate(login.getUserid(), login.getPwd());
-		if(user != null) {
+		Login login1 = loginDao.validate(login.getUserid(), login.getPwd());
+		if(login1 != null) {
 			Map session = (Map) ActionContext.getContext().getSession();
-			session.put("login", login);
+			session.put("login", login1);
 			
 			TypeDao typeDao = new TypeDaoImp();
 			List list = typeDao.getAll();

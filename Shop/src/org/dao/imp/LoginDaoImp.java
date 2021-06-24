@@ -37,4 +37,17 @@ public class LoginDaoImp implements LoginDao{
 			e.printStackTrace();
 		}
 	}
+	
+	public void delete(Login login) {
+		try {
+			Session session = org.util.HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			System.out.println("deleteloginid:" + login.getId());
+			session.delete(login);
+			ts.commit();
+			org.util.HibernateSessionFactory.closeSession();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

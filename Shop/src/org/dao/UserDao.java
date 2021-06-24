@@ -5,4 +5,5 @@ public interface UserDao {
 	public Usr getOneUser(String userid);
 	public void update(Usr user);
 	public void insert(Usr user);
+	public void delete(Usr user);
 }

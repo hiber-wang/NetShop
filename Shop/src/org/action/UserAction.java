@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.Date;
@@ -34,6 +35,13 @@ public class UserAction extends ActionSupport{
 	private String pwd;
 	private String sex;
 	private Pay pay;
+	private int pageNow;
+	public int getPageNow() {
+		return pageNow;
+	}
+	public void setPageNow(int pageNow) {
+		this.pageNow = pageNow;
+	}
 	public Pay getPay() {
 		return pay;
 	}
@@ -131,7 +139,12 @@ public class UserAction extends ActionSupport{
 		return SUCCESS;
 	}
 	public String updateUser() throws Exception {
+		
+		Map session = (Map) ActionContext.getContext().getSession();
+		Login login = (Login) session.get("login");
 		userDao = new UserDaoImp();
+		Usr user2 = userDao.getOneUser(login.getUserid());
+
 		Usr user1 = new Usr();
 		user1.setUserid(user.getUserid());
 		Set list = userDao.getOneUser(user.getUserid()).getGoods();
@@ -139,7 +152,7 @@ public class UserAction extends ActionSupport{
 		user1.setUsername(user.getUsername());
 		user1.setSex(user.getSex());
 		user1.setAddr(user.getAddr());
-		user1.setDate(user.getDate());
+		user1.setDate(user2.getDate());
 		if(this.getZpFile() != null) {
 			FileInputStream fis = new FileInputStream(this.getZpFile());
 			byte[] buffer = new byte[fis.available()];
@@ -189,16 +202,26 @@ public class UserAction extends ActionSupport{
 		}
 	}
 	public String buyGoods() throws Exception {
-		System.out.println("here");
-		Map session = (Map)ActionContext.getContext().getSession();
-		String userid = ((Login)session.get("login")).getUserid();
-		userDao = new UserDaoImp();
-		Usr user1 = userDao.getOneUser(userid);
-		Set list = user1.getGoods();
-		list.add(new GoodDaoImp().getOneGood(good.getGoodid()));
-		user1.setGoods(list);
-		userDao.update(user1);
-		return SUCCESS;
+		try {
+			System.out.println("here");
+			System.out.println("nowpage:"+this.getPageNow());
+			System.out.println("goodid:"+good.getGoodid());
+			Map session = (Map)ActionContext.getContext().getSession();
+			String userid = ((Login)session.get("login")).getUserid();
+			userDao = new UserDaoImp();
+			Usr user1 = userDao.getOneUser(userid);
+			Set list = user1.getGoods();
+			list.add(new GoodDaoImp().getOneGood(good.getGoodid()));
+			user1.setGoods(list);
+			userDao.update(user1);
+			Map request = (Map)ActionContext.getContext().get("request");
+			request.put("now", this.getPageNow());
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("error!!");
+			return ERROR;
+		}
 	}
 	
 	public String getBuyGoods() throws Exception {
@@ -256,6 +279,32 @@ public class UserAction extends ActionSupport{
 			Pay pay1 = payDao.getOnePay(pay.getId());
 			payDao.delete(pay1);
 			execute();
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+	
+	public String deleteUser() throws Exception {
+		try {
+			userDao = new UserDaoImp();
+			loginDao =  new LoginDaoImp();
+			payDao = new PayDaoImp();
+			Map session = (Map) ActionContext.getContext().getSession();
+			Login login = (Login)session.get("login");
+			String userid = login.getUserid();
+			
+			List payList = payDao.getUserPay(userid);
+			for(int i = 0; i < payList.size(); i++) {
+				payDao.delete((Pay)payList.get(i));
+			}
+			
+			Usr user = userDao.getOneUser(userid);
+			userDao.delete(user);
+			System.out.println("deleteUserloginid:" + login.getId());
+			loginDao.delete(login);
+			
 			return SUCCESS;
 		}catch(Exception e) {
 			e.printStackTrace();
